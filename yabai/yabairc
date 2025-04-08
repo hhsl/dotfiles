@@ -1,0 +1,65 @@
+#!/usr/bin/env sh
+# default layout (can be bsp, stack or float)
+yabai -m config layout bsp
+
+# handle sketchybar
+yabai -m config external_bar all:32:0
+
+# New window spawns to the right if vertical split, or bottom if horizontal split
+yabai -m config window_placement second_child
+
+# padding set to 12px
+yabai -m config top_padding 12
+yabai -m config bottom_padding 12
+yabai -m config left_padding 12
+yabai -m config right_padding 12
+yabai -m config window_gap 12
+
+# center mouse on window with focus
+yabai -m config mouse_follows_focus on
+
+# modifier for clicking and dragging with mouse
+yabai -m config mouse_modifier alt
+# set modifier + left-click drag to move window
+yabai -m config mouse_action1 move
+# set modifier + right-click drag to resize window
+yabai -m config mouse_action2 resize
+
+# when window is dropped in center of another window, swap them (on edges it will split it)
+# yabai -m mouse_drop_action swap
+
+# yabai -m config window_topmost on
+
+# Disable automatic tiling
+yabai -m rule --add app="^IINA$" manage=off
+# yabai -m rule --add app="^1Password 7$" manage=off
+yabai -m rule --add app="^Finder$" sticky=on manage=off
+yabai -m rule --add app="^Tunnelblick$" sticky=on manage=off
+yabai -m rule --add app="^Rechner$" sticky=on manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Overcast$" manage=off
+yabai -m rule --add app="^Musik$" title="^MiniPlayer$" sticky=on manage=off
+
+# float system preferences
+yabai -m rule --add app="^System Information$" manage=off
+yabai -m rule --add app="^System Settings$" title=".*" manage=off
+yabai -m rule --add app="^System.*einstellungen$" title=".*" sticky=on manage=off
+yabai -m rule --add title='Preferences$' manage=off
+yabai -m rule --add title='Settings$' manage=off
+yabai -m rule --add title='^Archive Utility$' manage=off
+
+# set some popup window/settings menu to float
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance|Advanced)$" manage=off
+yabai -m rule --add label="Firefox" app="^Firefox$" title="Opening " manage=off
+
+# custom space window
+yabai -m rule --add app="^(VScode)$" space=1
+yabai -m rule --add app="^(Firefox|Safari)$" space=2
+
+CENTER_APPS="^(1Password)$"
+yabai -m rule --add app="${CENTER_APPS}" manage=off grid=4:4:1:1:2:2
+
+yabai -m rule --apply
+
+echo "yabai configuration loaded.."

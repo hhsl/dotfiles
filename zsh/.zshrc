@@ -3,12 +3,13 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-    mkdir -p "$(dirname $ZINIT_HOME)"
-    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-# Load completions
-autoload -Uz compinit && compinit
+# Load completions brew
+autoload -Uz compinit 
+compinit
 
 # Source Zinit
 source "${ZINIT_HOME}/zinit.zsh"
@@ -26,6 +27,7 @@ zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-completions
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
+zinit light alexiszamanidis/zsh-git-fzf
 
 # Keys
 bindkey "^[[A" history-search-backward
@@ -73,25 +75,19 @@ zinit cdreplay -q
 # zoxide
 eval "$(zoxide init zsh)"
 
-# fnm
-export PATH=/Users/thoheisel/.fnm:$PATH
-export FNM_ARCH="x64"
-eval "$(fnm env --use-on-cd)"
-
-# ohmyposh
+# oh my posh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-    eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
+  eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.toml)"
 fi
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/thoheisel/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-
-# bun completions
-[ -s "/Users/thoheisel/.bun/_bun" ] && source "/Users/thoheisel/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+# 1p
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+# kubernetes
+source <(kubectl completion zsh)
