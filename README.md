@@ -1,3 +1,3 @@
 # dotfiles repository
 
-Trying to keep track of settings at different mashines
+Trying to keep track of settings on different mashines
