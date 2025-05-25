@@ -21,13 +21,14 @@ skhd --start-service
 yabai --start-service
 ```
 
-#### Install catppuccin TMUX theme:
+#### Install tmux catppuccin theme
 ```bash
 mkdir -p ~/.config/tmux/plugins/catppuccin
 git clone -b v2.1.3 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 ```
 
-Install (Sketchybar Font)[https://github.com/kvndrsslr/sketchybar-app-font] too.
+#### Install Sketchybar App Font
+[Sketchybar App Font](https://github.com/kvndrsslr/sketchybar-app-font)
 
 ## Install configs
 
