@@ -28,3 +28,13 @@ Install (Sketchybar Font)[https://github.com/kvndrsslr/sketchybar-app-font] too.
 ```bash
 ./setup.sh
 ```
+
+## Help
+
+If zsh config is not loaded try adding this to `~/.zprofile`
+
+```bash
+export XDG_CONFIG_HOME="$HOME/.config"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+```
+
