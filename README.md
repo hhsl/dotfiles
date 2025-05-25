@@ -6,7 +6,7 @@ Trying to keep track of settings on different mashines
 ## Dependencies
 
 ```bash
-brew install zsh stow eza jandedobbeleer/oh-my-posh/oh-my-posh
+brew install zsh stow eza jandedobbeleer/oh-my-posh/oh-my-posh fnm
 ```
 
 ### Optional Dependencies
