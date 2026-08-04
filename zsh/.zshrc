@@ -1,18 +1,24 @@
+# Ensure zsh core functions are available (fixes compinit in non-login shells / tmux)
+fpath=(/opt/homebrew/share/zsh/functions $fpath)
+# proton cli completions
+fpath=(~/.zfunc $fpath)
+
 # Zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-# Download Zinit, if it's not there yet
-if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "$(dirname $ZINIT_HOME)"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+# Load completions
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
-
-# Load completions brew
-autoload -Uz compinit 
+autoload -Uz compinit
 compinit
 
-# Source Zinit
-source "${ZINIT_HOME}/zinit.zsh"
+# Zinit completions
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Zinit Theme
 zinit ice depth=1
@@ -86,8 +92,9 @@ fi
 # fnm
 eval "$(fnm env --use-on-cd --shell zsh)"
 
-# 1p
-export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+# Proton CLi
+export PATH="$HOME/.local/bin:$PATH"
+export SSH_AUTH_SOCK="$HOME/.ssh/proton-pass-agent.sock"
 
 # kubernetes
 source <(kubectl completion zsh)
