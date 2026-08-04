@@ -9,7 +9,7 @@ brew install --cask ghostty
 ```
 
 ```bash
-brew install zsh stow eza jandedobbeleer/oh-my-posh/oh-my-posh fnm
+brew install eurkey-next zsh stow eza jandedobbeleer/oh-my-posh/oh-my-posh fnm
 ```
 
 ## Install the configs
