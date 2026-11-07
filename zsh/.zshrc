@@ -96,5 +96,17 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 export PATH="$HOME/.local/bin:$PATH"
 export SSH_AUTH_SOCK="$HOME/.ssh/proton-pass-agent.sock"
 
+# cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # kubernetes
 source <(kubectl completion zsh)
+
+# open code review
+# ocr completion zsh > "${fpath[1]}/_ocr"
+
+
+
+
+# bun completions
+[ -s "~/.bun/_bun" ] && source "/Users/thoheisel/.bun/_bun"
